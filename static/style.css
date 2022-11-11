@@ -5,6 +5,7 @@ body {
 div {    
     align-content: center;
     padding: 20px;
+    font-size: larger;
 }
 
 form {
