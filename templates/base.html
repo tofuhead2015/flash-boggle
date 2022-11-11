@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Boggle</title>
+</head>
+<body>
+    <h1>Guess the 5 letter word in 60 seconds <span id="timer"></span></h1>
+    <div>
+        <table id="grid">
+            {% for row in board %}
+            <tr>
+                {% for col in row %}
+                    <td>{{col}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <form action="/" method="POST">            
+            <input type="text" name="guess" id="guess">
+            <Button type="submit" id="submit-guess">Submit</Button>
+        </form>
+    </div>  
+    <div id="guess-result"></div>
+    {% block content %}{% endblock %}  
+    {% for msg in get_flashed_messages() %}
+        <p>{{ msg }}</p>
+    {% endfor %}
+</body>
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="/static/app.js"></script>   
+</html>
