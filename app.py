@@ -17,6 +17,6 @@ def show_board():
 def verify_word(): 
     guess = request.args.get('word')
     result = boggle_game.check_valid_word(session["board"], guess)
-    return {"result": result}
+    return {"result": "result - " + result}
 
 

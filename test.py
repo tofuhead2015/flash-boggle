@@ -18,8 +18,14 @@ class FlaskTests(TestCase):
         with app.test_client() as client:           
             resp = client.get('/')
             html = resp.get_data(as_text=True)
+            self.assertEqual(resp.status_code, 200)
+            self.assertEqual(len(session['board']), 5)
+            self.assertIn('Guess the 5 letter word in 60 seconds', html)
+        
 
-        self.assertEqual(len(session['board']), 5)
-        self.assertIn('Guess the 5 letter word in 60 seconds', html)
-
-    #def test_verify_word(self):
+    def test_verify_word(self):
+        with app.test_client() as client:                   
+            resp = client.post('/', data={'word': 'water'})
+            html = resp.get_data(as_text=True)
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('result', html)
